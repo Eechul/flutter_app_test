@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import 'package:flutter/services.dart';
 
 void main() => runApp(MyApp());
 
@@ -72,13 +73,16 @@ class RandomWordsState extends State<RandomWords> {
           color: alreadySaved ? Colors.red : null,
         ),
         onTap: () {
-          setState(() {
-            if(alreadySaved) {
-              _saved.remove(pair);  
-            } else {
-              _saved.add(pair);
-            }
-          });
+            Clipboard.getData("text/plain").then((clipboardCnt) {
+              print("dong ${clipboardCnt.text}");
+            });
+//          setState(() {
+//            if(alreadySaved) {
+//              _saved.remove(pair);
+//            } else {
+//              _saved.add(pair);
+//            }
+//          });
         },
     );
   }
